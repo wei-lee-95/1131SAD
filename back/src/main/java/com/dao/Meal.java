@@ -32,6 +32,7 @@ public class Meal {
     @Column(name = "meal_photo")
     private String photo;
 
+    //ok
     public int getID(){
         return mealID;
     }
@@ -45,5 +46,34 @@ public class Meal {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getType(){
+        return type;
+    }
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescribtion(){
+        return description;
+    }
+    public void setDescribtion(String describtion) {
+        this.description = describtion ;
+    }
+
+    public int getPrice(){
+        return price;
+    }
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getPhoto(){
+        return photo;
+    }
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+
 
 }
