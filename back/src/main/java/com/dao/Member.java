@@ -14,13 +14,13 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "memberID")  // 映射到資料庫中的 memberID 欄位
+    @Column(name = "member_id")  // 映射到資料庫中的 memberID 欄位
     private int memberID;
 
-    @Column(name = "name")
+    @Column(name = "member_name")
     private String name;
 
-    @Column(name = "phoneNumber")
+    @Column(name = "member_phonenumber")
     private String phoneNumber;
 
     public int getID(){
