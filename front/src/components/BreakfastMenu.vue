@@ -4,7 +4,7 @@
       <h1 class="title">緊來呷早餐店</h1>
       <div class="header-right">
         <div class="search-container"> 
-          <input type="text" placeholder="請輸入搜尋商品..." v-model="searchQuery" class="search-bar"/> 
+          <input type="text" placeholder="請輸入搜尋餐點..." v-model="searchQuery" class="search-bar"/> 
           <button @click="searchItems" class="search-button"> 
             <img :src="require('@/assets/search-icon.png')" alt="搜尋圖示" class="search-icon"/> 
           </button>
@@ -126,7 +126,7 @@ body {
 .title {
   margin: 0;
   font-size: 3em;
-  font-family: 'DFGirl', 'Noto Sans TC',san serif;
+  font-family: 'Noto Sans TC',san serif;
   color: black;
   margin-right: 600px;
   text-shadow: 
@@ -153,6 +153,7 @@ body {
   font-size: 16px; 
   background-color: #F3F3F3;
   padding-right: 40px;
+  text-indent: 10px;
 }
 .search-button { 
   position: absolute;
@@ -186,7 +187,7 @@ body {
   border-radius: 30px;
   cursor: pointer;
   margin: 5px 15px ;
-  font-size: 1.2em;
+  font-size: 1.5em;
   display: flex; 
   align-items: center;
   font-family: 'Noto Sans TC', sans-serif;
@@ -222,8 +223,8 @@ body {
   margin: 10px; 
 }
 .category-icon { 
-  width: 30px; 
-  height: 30px; 
+  width: 38px; 
+  height: 38px; 
   margin-right: 10px; 
 }
 </style>
