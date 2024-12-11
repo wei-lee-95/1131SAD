@@ -3,8 +3,13 @@
     <header class="menu-header">
       <h1 class="title">緊來呷早餐店</h1>
       <div class="header-right">
-        <input type="text" placeholder="請輸入搜尋商品..." v-model="searchQuery" class="search-bar"/>
-        <router-link to="/cart"> 
+        <div class="search-container"> 
+          <input type="text" placeholder="請輸入搜尋商品..." v-model="searchQuery" class="search-bar"/> 
+          <button @click="searchItems" class="search-button"> 
+            <img :src="require('@/assets/search-icon.png')" alt="搜尋圖示" class="search-icon"/> 
+          </button>
+        </div>
+          <router-link to="/cart"> 
           <img :src="require('@/assets/shopping-cart-2.png')" alt="購物車圖標" class="shopping-cart-icon"/>
         </router-link>
       </div>
@@ -95,6 +100,9 @@ export default {
     addToCart(product) { 
       this.cart.push(product); 
       alert(`${product.name} 已加入購物車!`);
+    },
+    searchItems() {
+      alert(`搜尋結果：${this.searchQuery}`); 
     }
   }
 };
@@ -102,9 +110,8 @@ export default {
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
-
 body {
-  background-color: white; 
+  background-color: #F3F3F3; 
   font-family: 'Noto Sans TC', sans-serif; 
 }
 
@@ -118,26 +125,45 @@ body {
 }
 .title {
   margin: 0;
-  font-size: 2.5em;
-  color: white;
+  font-size: 3em;
+  font-family: 'DFGirl', 'Noto Sans TC',san serif;
+  color: black;
   margin-right: 600px;
+  text-shadow: 
+    -1px -1px 0 white, /* 上左 */ 
+    1px -1px 0 white, /* 上右 */ 
+    -1px 1px 0 white, /* 下左 */ 
+    1px 1px 0 white; /* 下右 */
 }
 .header-right {
   display: flex;
   align-items: center;
 }
+.search-container { 
+  position: relative; 
+  display: flex; 
+  align-items: center; 
+}
 .search-bar {
   padding: 10px; 
   margin-right: 10px; 
-  border: 5px solid #ccc; 
   border-radius: 25px; 
   width: 200px; 
   outline: none; 
   font-size: 16px; 
-  background: url('@/assets/search-icon.png') no-repeat right 10px center; 
-  padding-right: 40px; 
-  background-size: 43px 36px;
-  filter: invert(1);
+  background-color: #F3F3F3;
+  padding-right: 40px;
+}
+.search-button { 
+  position: absolute;
+  right: 15px;
+  background: none; 
+  border: none; 
+  cursor: pointer; 
+} 
+.search-icon { 
+  width: 43px; 
+  height: 36px; 
 }
 .shopping-cart-icon { 
   width: 40px; 
@@ -154,7 +180,7 @@ body {
 }
 .category-button {
   padding: 10px 40px;
-  background-color: #DDDDDD;
+  background-color: #dfdede;
   color: black;
   border: none;
   border-radius: 30px;
@@ -163,16 +189,17 @@ body {
   font-size: 1.2em;
   display: flex; 
   align-items: center;
+  font-family: 'Noto Sans TC', sans-serif;
 }
 .category-button:hover { 
-    background-color: #ccc; 
+    background-color: white; 
     color:black;
   }
 .category-button.active {
-  background-color: #f4f1f1;
+  background-color:white;
   color:black;
   font-weight: bold;
-  border: 3px solid black; 
+  border: none; 
 }
 .menu {
   display: flex;
