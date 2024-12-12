@@ -7,41 +7,44 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-
 @Entity
-@Table(name = "customizationop")
+@Table(name = "customizationoption")
 
-public class CustomizationOp {
-    
+public class CustomizationOption {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "customization_id")
-    private int customiazation_id;
+    @Column(name = "customization_id")  // 映射到資料庫中的 memberID 欄位
+    private int customizationID;
 
     @Column(name = "customization_name")
     private String name;
 
     @Column(name = "customization_adjustedprice")
     private int adjustedprice;
-//ok
-    public int getCustomizationID(){
-        return customiazation_id;
-    }
-    public void setCustomizationID(int id) {
-        this.customiazation_id = id;
+
+    public int getID(){
+        return customizationID;
     }
 
-    public String getCustomizationName(){
+    public void setId(int id) {
+        this.customizationID = id;
+    }
+
+    public String getName(){
         return name;
     }
-    public void setCustomizationName(String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
-    
+
     public int getAdjustedPrice(){
         return adjustedprice;
     }
-    public void setAdjustedPrice(int price) {
-        this.adjustedprice = price;
+
+    public void setAdjustedPrice(int adjustedprice) {
+        this.adjustedprice = adjustedprice;
     }
+    
 }

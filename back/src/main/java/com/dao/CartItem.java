@@ -29,8 +29,8 @@ public class CartItem {
     @Column(name = "CartItem_itemsubprice")
     private int subprice;
 
-    @Column(name = "customization_id")
-    private int customiazation_id;
+    @Column(name = "customization_ids")
+    private String customiazation_ids;
     //ok
     public int getCartItemID(){
         return CartItem_id;
@@ -67,11 +67,11 @@ public class CartItem {
         this.subprice = subprice;
     }
 
-    public int getCustomizationID(){
-        return customiazation_id;
+    public String getCustomizationID(){
+        return customiazation_ids;
     }
-    public void setCustomizationID(int id) {
-        this.customiazation_id = id;
+    public void setCustomizationIDs(String id) {
+        this.customiazation_ids = id;
     }
 
 }
