@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import BreakfastMenu from '@/components/BreakfastMenu.vue'
-import ShoppingCart from '@/views/ShoppingCart.vue'
-import Checkout from '@/views/Checkout.vue'
-import OrderCompleted from '@/views/OrderCompleted.vue'
+import ShoppingCart from '@/components/ShoppingCart.vue'
+import Checkout from '@/components/Checkout.vue'
+import OrderCompleted from '@/components/OrderCompleted.vue'
 
 const routes = [
   {
