@@ -2,6 +2,8 @@
 package com.dao;
 
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,7 +13,7 @@ import jakarta.persistence.Table;
 
 
 @Entity
-@Table(name = "order")
+@Table(name = "orderlist")
 
 public class Order {
 
@@ -25,10 +27,10 @@ public class Order {
     private int member_id;
 
     @Column(name = "Order_time")
-    private String order_time;
+    private LocalDateTime order_time;
 
-    @Column(name = "Order_pickuptime")
-    private String pickuptime;
+    // @Column(name = "Order_pickuptime")
+    // private String pickuptime;
 
     @Column(name = "Order_status")
     private String status;
@@ -50,19 +52,19 @@ public class Order {
         this.member_id = id;
     }
 
-    public String getOrderTime(){
+    public LocalDateTime getOrderTime(){
         return order_time;
     }
-    public void setOrderTime(String time) {
-        this.order_time = time;
+    public void setOrderTime(LocalDateTime order_time) {
+        this.order_time = order_time;
     }
 
-    public String getPickupTime(){
-        return pickuptime;
-    }
-    public void setPickupTime(String time) {
-        this.pickuptime = time;
-    }
+    // public String getPickupTime(){
+    //     return pickuptime;
+    // }
+    // public void setPickupTime(String time) {
+    //     this.pickuptime = time;
+    // }
 
     public String getStatus(){
         return status;

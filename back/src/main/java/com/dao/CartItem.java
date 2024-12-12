@@ -14,23 +14,23 @@ public class CartItem {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "CartItem_id")  // 映射到資料庫中的欄位
+    @Column(name = "cart_item_id")  // 映射到資料庫中的欄位
     private int CartItem_id;
-
-    @Column(name = "ShoppingCart_id")
-    private int ShoppingCart_id;
 
     @Column(name = "meal_id")
     private int meal_id;
 
-    @Column(name = "CartItem_quantity")
+    @Column(name = "member_id")
+    private int member_id;
+
+    @Column(name = "cart_item_quantity")
     private int quantity;
 
-    @Column(name = "CartItem_itemsubprice")
+    @Column(name = "cart_item_itemsubprice")
     private int subprice;
 
     @Column(name = "customization_ids")
-    private String customiazation_ids;
+    private String customization_ids;
     //ok
     public int getCartItemID(){
         return CartItem_id;
@@ -39,18 +39,18 @@ public class CartItem {
         this.CartItem_id = id;
     }
 
-    public int getCartID(){
-        return ShoppingCart_id;
-    }
-    public void setCartID(int id) {
-        this.ShoppingCart_id = id;
-    }
-
     public int getMealID(){
         return meal_id;
     }
     public void setMealID(int id) {
         this.meal_id = id;
+    }
+
+    public int getMemberID(){
+        return member_id;
+    }
+    public void setMemberID(int id) {
+        this.member_id = id;
     }
 
     public int getItemQuantity(){
@@ -67,11 +67,11 @@ public class CartItem {
         this.subprice = subprice;
     }
 
-    public String getCustomizationID(){
-        return customiazation_ids;
+    public String getCustomizationIDs(){
+        return customization_ids;
     }
     public void setCustomizationIDs(String id) {
-        this.customiazation_ids = id;
+        this.customization_ids = id;
     }
 
 }

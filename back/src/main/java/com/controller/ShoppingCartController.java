@@ -1,13 +1,16 @@
 package com.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.CartItem;
 import com.dao.CartItemRepository;
+import com.dao.OrderRepository;
 import com.service.MemberService;
+import com.service.OrderService;
 import com.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,19 +28,44 @@ public class ShoppingCartController {
     @Autowired
     private CartItemRepository cartItemRepository;
 
-//加入購物車
+    @Autowired
+    private OrderService orderService;
 
-    @PostMapping("/cart/{memberID}/{mealID}/{customization_ids}")
-    public String addCartItem(@RequestBody int memberID, int mealID, List<Integer> customizationIDs) {
+
+    @PostMapping("/cart/addMeal") //新增品項至購物車
+    public String addCartItem(@RequestBody Map<String, Object> requestBody) {
+        int memberID = (int) requestBody.get("memberID");
+        int mealID = (int) requestBody.get("mealID");
+        List<Integer> customizationIDs = (List<Integer>) requestBody.get("customizationIDs");
 
         shoppingCartService.addMealToCart(memberID, mealID, customizationIDs);
     
         return "success";
     }
 
-    @GetMapping("/cart/{memberID}")
-    public List<CartItem> getAllCartItems(){
-        return cartItemRepository.findAll();
+    //從購物車內刪除品項
+
+    @PostMapping("/cart/deleteMeal")
+    public String deleteCartItem(@RequestBody Map<String, Object> requestBody) {
+        int memberID = (int) requestBody.get("memberID");
+        int mealID = (int) requestBody.get("mealID");
+        List<Integer> customizationIDs = (List<Integer>) requestBody.get("customizationIDs");
+
+        shoppingCartService.deleteMealToCart(memberID, mealID, customizationIDs);
+    
+        return "success";
+    }
+
+    //送出訂單 先新增order 再新增orderitem
+    @PostMapping("/cart/addOrder") 
+    public String addOrder(@RequestBody Map<String, Object> requestBody) {
+        int memberID = (int) requestBody.get("memberID");
+        //int mealID = (int) requestBody.get("mealID");
+        //List<Integer> customizationIDs = (List<Integer>) requestBody.get("customizationIDs");
+
+        orderService.createOrder(memberID);
+        
+        return "已送出訂單";
     }
 
     

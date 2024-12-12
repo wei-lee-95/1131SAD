@@ -37,12 +37,10 @@ public class MealController {
     @Autowired
     private CustomizationOptionService customizationOptionService;
 
-    @Autowired
-    private ShoppingCartService shoppingCartService;
 
     @GetMapping("/member/{memberID}")
     public Menu showMenu(@PathVariable int memberID){
-        shoppingCartService.newCart(memberID);
+        //shoppingCartService.newCart(memberID);
         return menuService.getMenu();
     }
 

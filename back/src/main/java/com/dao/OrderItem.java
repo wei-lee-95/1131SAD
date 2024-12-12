@@ -26,14 +26,14 @@ public class OrderItem {
     @Column(name = "meal_id")
     private int meal_id;
 
-    @Column(name = "OrderItem_quantity")
+    @Column(name = "order_item_quantity")
     private int quantity;
 
-    @Column(name = "OrderItem_itemsubprice")
+    @Column(name = "order_item_itemsubprice")
     private int subprice;
 
-    @Column(name = "customization_id")
-    private int customization_id;
+    @Column(name = "customization_ids")
+    private String customization_ids;
 
     //ok
     public int getOderItemID(){
@@ -71,10 +71,10 @@ public class OrderItem {
         this.subprice = price;
     }
 
-    public int getCustomizationID(){
-        return customization_id;
+    public String getCustomizationIDs(){
+        return customization_ids;
     }
-    public void setCustomizationID(int id) {
-        this.customization_id = id;
+    public void setCustomizationIDs(String id) {
+        this.customization_ids = id;
     }
 }
