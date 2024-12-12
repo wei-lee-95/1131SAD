@@ -217,7 +217,8 @@ body {
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: flex-start;
-  max-width: 1200px;
+  width: 1200px;
+  gap: 31px;
 }
 .product-grid .product-card { 
   margin: 10px; 
