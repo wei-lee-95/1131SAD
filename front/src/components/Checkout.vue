@@ -1,22 +1,26 @@
 <template>
-  <div class="Checkout">
-    <header>
-      <h1>確認訂單</h1>
+  <div id="Checkout">
+    <header class="checkout-header">
+      <h1 class="title">訂單確認</h1>
     </header>
 
     <div class="order-summary">
-      <h2>訂單確認</h2>
       <div v-for="(item, index) in cartItems" :key="index" class="order-item">
-        <h3>{{ item.name }}</h3>
-        <p>數量：{{ item.quantity }}</p>
-        <p>小計：NT$ {{ item.price * item.quantity }}</p>
+        <div class="item-card">
+          <div class="item-info-container">
+            <h3 class="item-name">{{ item.name }}</h3>
+            <p class="item-price">數量：{{ item.quantity }}</p>
+            <p class="item-price">小計：NT$ {{ item.price * item.quantity }}</p>
+          </div>
+        </div>
       </div>
-      <p>總計：NT$ {{ totalAmount }}</p>
+      <p class="item-total">總計：NT$ {{ totalAmount }}</p>
       <textarea
         v-model="comment"
         placeholder="備註事項 (可留空)"
+        class ="textarea"
       ></textarea>
-      <button v-if="cartItems.length > 0" @click="submitOrder">送出訂單</button>
+      <button v-if="cartItems.length > 0" class="next-button" @click="submitOrder">送出訂單</button>
     </div>
   </div>
 </template>
@@ -56,3 +60,99 @@ export default {
   }
 }
 </script>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap');
+body {
+  background-color: #F3F3F3;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
+.checkout-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px;
+  margin-bottom: 80px;
+  background-color: black;
+}
+.title {
+  margin: 0;
+  font-size: 3em;
+  font-family: 'Noto Sans TC',san serif;
+  color: black;
+  justify-content: center;
+  align-items: center;
+  text-shadow:
+    -1px -1px 0 white, /* 上左 */
+    1px -1px 0 white, /* 上右 */
+    -1px 1px 0 white, /* 下左 */
+    1px 1px 0 white; /* 下右 */
+}
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.item-card {
+  flex-grow: 0;
+  width: 600px;
+  height: 120px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+.item-info-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.item-name {
+  font-size: 1.5em;
+  margin: 0;
+  font-family: 'Noto Sans TC', sans-serif;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.item-price {
+  font-size: 1.2em;
+  color: #333;
+  padding: 25px;
+}
+.textarea {
+  width: 300px;
+  height: 20px;
+  text-align: center;
+  padding: 10px;
+}
+.next-button {
+  margin: 10px;
+  padding: 10px 20px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 20px;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+.next-button:hover {
+  background-color: #D2D2D2;
+  color: black;
+}
+.item-total {
+  font-size: 1.5em;
+  margin: 10;
+  padding: 15px;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+</style>
