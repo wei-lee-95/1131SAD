@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <img :src="product.image" alt="Product Image" class="product-image"/>
+    <img :src="product.photo" alt="Product Image" class="product-image"/>
     <div class="product-info">
       <h3 class="product-name">{{ product.name }}</h3>
       <p class="product-price">{{ product.price }}元</p>
@@ -14,10 +14,11 @@
             <button 
               type="button" 
               v-for="option in options" 
-              :key="option" 
-              :class="{'selected': customization.options.includes(option)}" 
-              @click="toggleOption(option)"> 
-              {{ option }} 
+              :key="option"
+              :class="{'selected': customization.options.includes(option.name)}" 
+              @click="toggleOption(option.name)"> 
+              {{ option.name }}
+              <span v-if="option.adjustedPrice > 0"> {{ option.adjustedPrice }}元</span>
             </button> 
           </div>
           <div class="quantity-selector"> 
@@ -37,6 +38,7 @@
 </template>
 
 <script>
+import { fetchMealDetailsWithCustomization } from "@/utils/meal";
 export default {
   name: 'ProductCard',
   props: {
@@ -51,11 +53,24 @@ export default {
       customization: {
         options:[],
       },
-      options: ['加蛋', '加起司', '不要番茄', '不要生菜', '不要醬', '不要洋蔥', '不要酸黃瓜', '加大', '改溫的','去冰'],
+      options: [],
       quantity: 1,
     };
   },
   methods: {
+    async getCustomizationOption(mealID) {
+      console.log("開始請求客製化選項...");
+      const memberID = 1
+      try {
+        const response = await fetchMealDetailsWithCustomization(memberID, mealID);
+        this.options = response.data.customizationOptions.map(option => ({
+          name: option.name,
+          adjustedPrice: option.adjustedPrice,
+        }));       
+      } catch (error) {
+      console.error("無法取得資料：", error);
+      }
+    },
     showCustomization() {
       this.isCustomizationVisible = true;
     },
@@ -88,6 +103,9 @@ export default {
       this.$emit('add-to-cart', customizedProduct);
       this.closeCustomization();
     },
+  },
+  mounted() {
+    this.getCustomizationOption(this.product.id)
   },
 };
 </script>

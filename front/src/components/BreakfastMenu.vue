@@ -44,6 +44,7 @@
 
 <script>
 import ProductCard from './ProductCard.vue';
+import { fetchMealsByMemberID } from "@/utils/meal";
 
 export default {
   name: 'BreakfastMenu',
@@ -62,30 +63,34 @@ export default {
       { name: '點心', iconActive: 'fries.png', iconInactive: 'fries-un.png' }, 
       { name: '飲料', iconActive: 'drink.png', iconInactive: 'drink-un.png' },
       ],
-      items: [
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:吐司夾蛋', category: '吐司', price: 30, image: 'images/toast-egg.jpg' },
-        { name: '範例:漢堡豬排', category: '漢堡', price: 45, image: 'images/burger-pork.jpg' },
-        { name: '範例:原味蛋餅', category: '蛋餅', price: 25, image: 'images/pancake.jpg' },
-        { name: '範例:薯條', category: '點心', price: 20, image: 'images/fries.jpg' },
-        { name: '範例:奶茶', category: '飲料', price: 15, image: 'images/tea.jpg' },
-      ],
+      items: [],
       cart: []
     };
   },
   computed: {
     filteredItems() {
       return this.items.filter(item => {
-        return (this.selectedCategory === '' || this.selectedCategory === '全部' || item.category === this.selectedCategory) &&
+        return (this.selectedCategory === '' || this.selectedCategory === '全部' || item.type === this.selectedCategory) &&
              (!this.searchQuery || item.name.includes(this.searchQuery));
       })
     }
   },
+  created() {
+      // 組件掛載完成後，立即載入餐點資料
+      console.log("組件已掛載，開始加載餐點資料...");
+      this.fetchMeals();
+  },
   methods: {
+    async fetchMeals() {
+      console.log("開始請求餐點資料...");
+      const memberID = 1
+      try {
+        const response = await fetchMealsByMemberID(memberID);
+        this.items = response.data.meals;       
+      } catch (error) {
+      console.error("無法取得餐點資料：", error);
+      }
+    },
     selectCategory(category) {
       this.selectedCategory = category;
     },
@@ -103,7 +108,7 @@ export default {
     },
     searchItems() {
       alert(`搜尋結果：${this.searchQuery}`); 
-    }
+    },
   }
 };
 </script>
