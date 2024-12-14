@@ -45,6 +45,7 @@
 <script>
 import ProductCard from './ProductCard.vue';
 import { fetchMealsByMemberID } from "@/utils/meal";
+import { addToCart } from "@/utils/meal"; 
 
 export default {
   name: 'BreakfastMenu',
@@ -64,7 +65,7 @@ export default {
       { name: '飲料', iconActive: 'drink.png', iconInactive: 'drink-un.png' },
       ],
       items: [],
-      cart: []
+      //cart: []
     };
   },
   computed: {
@@ -103,8 +104,18 @@ export default {
       require(`@/assets/${category.iconInactive}`); 
     },
     addToCart(product) { 
-      this.cart.push(product); 
-      alert(`${product.name} 已加入購物車!`);
+      //this.cart.push(product); 
+      const memberID = 1
+      const mealID = product.id;
+      const customizationIDs = product.customization.options
+      addToCart(memberID, mealID, customizationIDs)
+        .then(() => {
+          alert(`${product.name} 已加入購物車!`);
+        })
+        .catch((error) => {
+          console.error("加入購物車失敗:", error);
+          alert("加入購物車失敗，請稍後再試！");
+        });
     },
     searchItems() {
       alert(`搜尋結果：${this.searchQuery}`); 

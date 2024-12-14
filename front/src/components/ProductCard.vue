@@ -15,8 +15,8 @@
               type="button" 
               v-for="option in options" 
               :key="option"
-              :class="{'selected': customization.options.includes(option.name)}" 
-              @click="toggleOption(option.name)"> 
+              :class="{'selected': customization.options.includes(option.id)}" 
+              @click="toggleOption(option.id)"> 
               {{ option.name }}
               <span v-if="option.adjustedPrice > 0"> {{ option.adjustedPrice }}元</span>
             </button> 
@@ -64,9 +64,10 @@ export default {
       try {
         const response = await fetchMealDetailsWithCustomization(memberID, mealID);
         this.options = response.data.customizationOptions.map(option => ({
+          id: option.id, 
           name: option.name,
           adjustedPrice: option.adjustedPrice,
-        }));       
+        }));      
       } catch (error) {
       console.error("無法取得資料：", error);
       }
@@ -77,13 +78,13 @@ export default {
     closeCustomization() {
       this.isCustomizationVisible = false;
     },
-    toggleOption(option) { 
-      const index = this.customization.options.indexOf(option); 
+    toggleOption(optionID) { 
+      const index = this.customization.options.indexOf(optionID); 
       if (index > -1) { 
         this.customization.options.splice(index, 1); 
       } 
       else { 
-        this.customization.options.push(option); 
+        this.customization.options.push(optionID); 
       } 
     },
     increaseQuantity(){ 
@@ -97,7 +98,9 @@ export default {
     addToCart() {
       const customizedProduct = {
         ...this.product,
-        customization: { ...this.customization },
+        customization: {
+          options: this.customization.options,
+        },
         quantity: this.quantity,
       };
       this.$emit('add-to-cart', customizedProduct);

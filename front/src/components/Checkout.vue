@@ -76,6 +76,7 @@ body {
   margin-bottom: 80px;
   background-color: black;
 }
+/*
 .title {
   margin: 0;
   font-size: 3em;
@@ -85,10 +86,11 @@ body {
   align-items: center;
   text-shadow:
     -1px -1px 0 white, /* 上左 */
-    1px -1px 0 white, /* 上右 */
-    -1px 1px 0 white, /* 下左 */
-    1px 1px 0 white; /* 下右 */
-}
+    /* 1px -1px 0 white, */ /* 上右 */
+    /* -1px 1px 0 white, */ /* 下左 */
+    /* 1px 1px 0 white; */ /* 下右 */
+/* }  */
+
 .order-summary {
   display: flex;
   flex-direction: column;
