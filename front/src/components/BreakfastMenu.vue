@@ -108,7 +108,7 @@ export default {
       const memberID = 1
       const mealID = product.id;
       const customizationIDs = product.customization.options
-      addToCart(memberID, mealID, customizationIDs)
+      addToCart(memberID, mealID, product.quantity, customizationIDs)
         .then(() => {
           alert(`${product.name} 已加入購物車!`);
         })

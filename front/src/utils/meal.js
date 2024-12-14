@@ -11,10 +11,11 @@ export function fetchMealDetailsWithCustomization(memberID, mealID) {
   return axios.get(`${BASE_URL}/member/${memberID}/meal/${mealID}`);
 }
 
-export function addToCart(memberID, mealID, customizationIDs) {
+export function addToCart(memberID, mealID, quantity, customizationIDs) {
   return axios.post(`${BASE_URL}/cart/addMeal`, {
     memberID,
     mealID,
+    quantity,
     customizationIDs,
   });
 }
@@ -36,8 +37,23 @@ export function deleteToCart(memberID, mealID, customizationIDs) {
   });
 }
 
-export function addOrder(memberID) {
+export function addOrder(memberID, comment) {
   return axios.post(`${BASE_URL}/cart/addOrder`, {
-    memberID,
+    memberID, comment
+  },
+  {
+    headers: {
+      "Content-Type": "application/json",  // 確保請求頭部正確
+    },
+  });
+}
+
+
+export function updateCart(memberID, mealID, newQuantity, customizationIDs) {
+  return axios.post(`${BASE_URL}/cart/updateMealQuantity`, {
+    memberID, 
+    mealID, 
+    newQuantity, 
+    customizationIDs
   });
 }

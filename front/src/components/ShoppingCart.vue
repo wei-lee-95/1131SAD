@@ -40,6 +40,7 @@
 <script>
 import { fetchCartByMemberID } from "@/utils/meal"
 import { deleteToCart } from "@/utils/meal"; 
+import { updateCart } from '@/utils/meal'; 
 
 export default {
   name: 'ShoppingCart',
@@ -71,24 +72,40 @@ export default {
       const memberID = 1
       try {
         const response = await fetchCartByMemberID(memberID);
-        console.log(response)
         this.cartItems = response.data;       
       } catch (error) {
       console.error("無法取得餐點資料：", error);
       }
     },
-    incrementQuantity (item) {
-      this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity + 1, customizations: item.customizations })
-    },
-    decrementQuantity (item) {
-      if (item.quantity > 1) {
-        this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity - 1, customizations: item.customizations })
+    async incrementQuantity (item) {
+      const memberID = 1
+      try {
+        // 更新後端數量
+        await updateCart(memberID, item.meal.id, item.itemQuantity + 1, item.customizations.map(c => c.id)|| []);  
+        this.fetchCart();      
+      } catch (error) {
+        console.error("無法增加數量", error.response ? error.response.data : error.message);
       }
+      /* this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity + 1, customizations: item.customizations }) */
+    },
+    async decrementQuantity (item) {
+      const memberID = 1
+      if (item.itemQuantity > 1){
+        try {
+          // 更新後端數量
+          await updateCart(memberID, item.meal.id, item.itemQuantity - 1, item.customizations.map(c => c.id)|| []);
+          this.fetchCart(); 
+        } catch (error) {
+          console.error("無法減少數量", error.response ? error.response.data : error.message);
+        }
+      }
+      /* if (item.quantity > 1) {
+        this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity - 1, customizations: item.customizations })
+      } */
     },
     async removeItem(item) {
       try {
         // 呼叫後端 API 刪除餐點
-        console.log()
         const memberID = 1
         const mealID = item.meal.id;
         const customizationIDs = item.customizations.map(c => c.id);

@@ -28,6 +28,13 @@ public interface CartItemRepository extends JpaRepository<CartItem, Integer>{
     @Modifying
     @Query("DELETE FROM CartItem c WHERE c.member_id = :memberId")
     void deleteByMemberID(@Param("memberId") int memberId);
+
+    @Query("SELECT c FROM CartItem c WHERE c.member_id = :memberId AND c.meal_id = :mealID AND c.customization_ids = :customizationIDs")
+    CartItem findByMemberIdAndMealIDAndCustomizationIDs(
+    @Param("memberId") Integer memberId,
+    @Param("mealID") Integer mealID,
+    @Param("customizationIDs") String customizationIDs);
+
     
 
 }

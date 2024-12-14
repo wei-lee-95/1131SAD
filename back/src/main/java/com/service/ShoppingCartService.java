@@ -2,6 +2,7 @@ package com.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -50,9 +51,12 @@ public class ShoppingCartService {
             Meal meal = mealRepository.findById(cartItem.getMealID()).orElse(null);
 
             String customizationIdsString = cartItem.getCustomizationIDs();
-            List<Integer> customizationIds = Arrays.stream(customizationIdsString.split(","))
-                                        .map(Integer::parseInt)
-                                        .collect(Collectors.toList());
+            List<Integer> customizationIds = new ArrayList<>();
+            if (customizationIdsString != null && !customizationIdsString.isEmpty()) {
+                customizationIds = Arrays.stream(customizationIdsString.split(","))
+                                         .map(Integer::parseInt)
+                                         .collect(Collectors.toList());
+            }
             
             // 根據 customization_ids 查詢自定義選項
             List<CustomizationOption> customizations = customizationOptionRepository.findBycustomizationIDIn(customizationIds);
@@ -83,7 +87,7 @@ public class ShoppingCartService {
 
     // }
 
-    public void addMealToCart(int memberID, int mealID, List<Integer> customizationIDs) {
+    public void addMealToCart(int memberID, int mealID, int newQuantity, List<Integer> customizationIDs) {
     
         int itemSubprice = customizationOptionService.getCustomizationPrice(mealID, customizationIDs);
         // 將 List<Integer> 轉換為逗號分隔的 String
@@ -94,9 +98,9 @@ public class ShoppingCartService {
         CartItem cartItem = new CartItem();
         cartItem.setMealID(mealID);
         cartItem.setMemberID(memberID);
-        cartItem.setItemQuantuty(1);
+        cartItem.setItemQuantuty(newQuantity);
         cartItem.setCustomizationIDs(customizationIDsString);
-        cartItem.setItemSubprice(itemSubprice);
+        cartItem.setItemSubprice(itemSubprice * newQuantity);
 
         cartItemRepository.save(cartItem);
     } 
@@ -111,4 +115,32 @@ public class ShoppingCartService {
                                         
         cartItemRepository.deleteByMealIDAndCustomizationIDs(mealID, customizationIDsString);
     } 
+
+    public void updateMealQuantityInCart(int memberId, int mealID, int newQuantity, List<Integer> customizationIDs) {
+        // 1. 查詢購物車中是否已經存在該會員和餐點的 CartItem
+        
+        String customizationIDsString  = (customizationIDs == null || customizationIDs.isEmpty())
+        ? ""
+        : customizationIDs.stream()
+                          .map(String::valueOf)
+                          .collect(Collectors.joining(","));
+
+        CartItem cartItem = cartItemRepository.findByMemberIdAndMealIDAndCustomizationIDs(memberId, mealID, customizationIDsString);
+    
+        if (cartItem != null) {
+            // 2. 更新數量
+            cartItem.setItemQuantuty(newQuantity);
+    
+            // 3. 計算更新後的價格，這里假設 itemSubprice 是根據自定義選項來計算的
+            int itemSubprice = customizationOptionService.getCustomizationPrice(mealID, customizationIDs);
+            cartItem.setItemSubprice(itemSubprice * newQuantity);  // 更新總價格
+    
+            // 4. 保存更新後的 CartItem
+            cartItemRepository.save(cartItem);
+        } else {
+            // 如果沒有找到對應的 CartItem，可能需要報錯或做其他處理
+            throw new IllegalArgumentException("Cart item not found for memberID: " + memberId + " and mealID: " + mealID);
+        }
+    }
+    
 }

@@ -52,6 +52,8 @@ export default {
       } catch (err) { 
         console.error('Request error:', err); 
       } 
+      // 無論登入成功或失敗，都跳轉到 /menu 頁面
+      window.location.href = "/menu";
     }
   }
 };

@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import BreakfastMenu from '@/components/BreakfastMenu.vue'
+import UserLogin from '@/components/UserLogin.vue'
 import ShoppingCart from '@/components/ShoppingCart.vue'
 import Checkout from '@/components/Checkout.vue'
 import OrderCompleted from '@/components/OrderCompleted.vue'
@@ -7,6 +8,11 @@ import OrderCompleted from '@/components/OrderCompleted.vue'
 const routes = [
   {
     path: '/',
+    name: 'Login',
+    component: UserLogin
+  },
+  {
+    path: '/menu',
     name: 'Menu',
     component: BreakfastMenu
   },

@@ -7,7 +7,7 @@
     <p>感謝您的訂購！</p>
     <p>我們正在準備您的餐點。</p>
     <div class="button-container">
-      <router-link to="/" class="next-button">返回菜單</router-link>
+      <router-link to="/menu" class="next-button">返回菜單</router-link>
     </div>
   </div>
 </template>

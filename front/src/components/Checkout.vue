@@ -61,7 +61,12 @@ export default {
     }, */ 
     submitOrder() {  
       const memberID = 1
-      addOrder(memberID)
+      const comment = this.comment || '';
+      if (isNaN(memberID)) {
+        console.error("Invalid memberID");
+      }
+      console.log(this.comment)
+      addOrder(memberID, comment)
         .then(() => {
           alert("訂單已成功送出！");
           this.$router.push('/order-completed')

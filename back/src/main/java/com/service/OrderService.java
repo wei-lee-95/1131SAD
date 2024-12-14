@@ -29,7 +29,7 @@ public class OrderService {
     private OrderItemRepository orderItemRepository;
     
     @Transactional
-    public void createOrder(int memberID) {
+    public void createOrder(int memberID, String comment) {
         
         // 計算該會員的所有 cart_item 的 subprice 總和
         Integer totalSubprice = cartItemRepository.calculateTotalSubpriceByMemberId(memberID);
@@ -39,6 +39,7 @@ public class OrderService {
         order.setOrderTime(LocalDateTime.now());
         order.setStatus("餐點製作中...");
         order.setOrderPrice(totalSubprice);
+        order.setComment(comment);
         order = orderRepository.save(order);
 
         int orderId = order.getOrderID(); 

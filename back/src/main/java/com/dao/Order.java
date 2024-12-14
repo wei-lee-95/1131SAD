@@ -37,6 +37,9 @@ public class Order {
 
     @Column(name = "Order_total_price")
     private int toatl_price;
+
+    @Column(name = "comment")
+    private String comment;
 //ok
     public int getOrderID(){
         return order_id;
@@ -78,5 +81,12 @@ public class Order {
     }
     public void setOrderPrice(int price) {
         this.toatl_price = price;
+    }
+
+    public String getComment(){
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 }
