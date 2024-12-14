@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.CartItem;
 import com.dao.CartItemRepository;
+import com.dao.Menu;
 import com.dao.OrderRepository;
+import com.dao.ShoppingCart;
 import com.service.MemberService;
 import com.service.OrderService;
 import com.service.ShoppingCartService;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
@@ -34,6 +37,11 @@ public class ShoppingCartController {
     @Autowired
     private OrderService orderService;
 
+    @GetMapping("/cart/{memberID}")
+    public List<CartItem> showCart(@PathVariable int memberID){
+        //shoppingCartService.newCart(memberID);
+        return shoppingCartService.getCart(memberID);
+    }
 
     @PostMapping("/cart/addMeal") //新增品項至購物車
     public String addCartItem(@RequestBody Map<String, Object> requestBody) {

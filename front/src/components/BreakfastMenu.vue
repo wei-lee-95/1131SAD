@@ -65,7 +65,7 @@ export default {
       { name: '飲料', iconActive: 'drink.png', iconInactive: 'drink-un.png' },
       ],
       items: [],
-      //cart: []
+      cart: []
     };
   },
   computed: {

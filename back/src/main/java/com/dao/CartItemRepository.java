@@ -16,7 +16,7 @@ import org.springframework.data.repository.query.Param;
 public interface CartItemRepository extends JpaRepository<CartItem, Integer>{
 
     @Modifying
-    @Query(value = "DELETE FROM CartItem c WHERE c.meal_id = :mealID AND c.customization_ids = :customizationIDs LIMIT 1", nativeQuery = true)
+    @Query(value = "DELETE FROM CartItem c WHERE c.meal_id = :mealID AND c.customization_ids = :customizationIDs")
     void deleteByMealIDAndCustomizationIDs(@Param("mealID") Integer mealID, @Param("customizationIDs") String customizationIDs);
 
     @Query("SELECT SUM(c.subprice) FROM CartItem c WHERE c.member_id = :memberId")

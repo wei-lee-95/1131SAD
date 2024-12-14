@@ -6,15 +6,17 @@
     <main class="cart">
       <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
         <div class="item-card">
-          <img :src="item.image" alt="餐點圖片" class="item-image"/>
+          <img :src="item.meal.photo" alt="餐點圖片" class="item-image"/>
           <div class="item-info-container">
             <div class="item-info">
-              <h2 class="item-name">{{ item.name }}</h2>
-              <p>{{ item.customizations }}</p>
-              <p class="item-price">單價：NT$ {{ item.price }}</p>
+              <h2 class="item-name">{{ item.meal.name }}</h2>
+                <p v-for="(customization, index) in item.customizations" :key="index">
+                {{ customization.name }}
+                </p>
+              <p class="item-price">單價：NT$ {{ item.itemSubprice }}</p>
               <div class="quantity-selector">
                 <button class="quantity-button" @click="decrementQuantity(item)">-</button>
-                <div class="quantity-display">{{ item.quantity }}</div>
+                <div class="quantity-display">{{ item.itemQuantity }}</div>
                 <button class="quantity-button" @click="incrementQuantity(item)">+</button>
                 <button class="remove-meal-button" @click="removeItem(item)">移除</button>
               </div>
@@ -36,6 +38,9 @@
 </template>
 
 <script>
+import { fetchCartByMemberID } from "@/utils/meal"
+import { deleteToCart } from "@/utils/meal"; 
+
 export default {
   name: 'ShoppingCart',
   props: {
@@ -44,15 +49,34 @@ export default {
       required: true
     }
   },
+  data() {
+    return {
+      cartItems:[],
+    };
+  },
   computed: {
-    cartItems () {
+    /*cartItems () {
       return this.$store.state.cart
-    },
+    },*/
     totalAmount () {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+      return this.cartItems.reduce((total, item) => total + item.itemSubprice * item.itemQuantity, 0)
     }
+  }, 
+  mounted() {
+      this.fetchCart();
   },
   methods: {
+    async fetchCart() {
+      console.log("開始請求購物車資料...");
+      const memberID = 1
+      try {
+        const response = await fetchCartByMemberID(memberID);
+        console.log(response)
+        this.cartItems = response.data;       
+      } catch (error) {
+      console.error("無法取得餐點資料：", error);
+      }
+    },
     incrementQuantity (item) {
       this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity + 1, customizations: item.customizations })
     },
@@ -61,14 +85,38 @@ export default {
         this.$store.commit('UPDATE_QUANTITY', { productName: item.name, quantity: item.quantity - 1, customizations: item.customizations })
       }
     },
-    removeItem (item) {
-      this.$store.commit('REMOVE_FROM_CART', item)
+    async removeItem(item) {
+      try {
+        // 呼叫後端 API 刪除餐點
+        console.log()
+        const memberID = 1
+        const mealID = item.meal.id;
+        const customizationIDs = item.customizations.map(c => c.id);
+        const response = await deleteToCart(memberID, mealID, customizationIDs);
+
+        if (response.data == "success") {
+          this.fetchCart();
+        } else {
+          // 處理錯誤（如果後端返回錯誤訊息）
+          console.error('無法刪除餐點');
+        }
+      } catch (error) {
+        console.error('無法連接後端刪除餐點:', error);
+      }
     },
+    /* removeItem (item) {
+      this.$store.commit('REMOVE_FROM_CART', item)
+    }, */
     continueShopping () {
       this.$router.push('/')
     },
     goToCheckout () {
-      this.$router.push('/checkout')
+      this.$router.push({
+        path: '/checkout',
+        query: {
+         cartItems: JSON.stringify(this.cartItems) // 傳遞資料
+        }
+      });
     }
   }
 }

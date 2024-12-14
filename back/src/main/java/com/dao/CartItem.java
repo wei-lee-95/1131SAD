@@ -1,11 +1,14 @@
 package com.dao;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "cartitem")
@@ -31,6 +34,33 @@ public class CartItem {
 
     @Column(name = "customization_ids")
     private String customization_ids;
+
+
+    @Transient // 如果不需要持久化，可以加上 @Transient
+    private Meal meal;  // 餐點資料
+
+    @Transient
+    private List<CustomizationOption> customizations;  // 自定義選項資料
+
+    // getters and setters
+
+    // meal getter and setter
+    public Meal getMeal() {
+        return meal;
+    }
+
+    public void setMeal(Meal meal) {
+        this.meal = meal;
+    }
+
+    // customizations getter and setter
+    public List<CustomizationOption> getCustomizations() {
+        return customizations;
+    }
+
+    public void setCustomizations(List<CustomizationOption> customizations) {
+        this.customizations = customizations;
+    }
     //ok
     public int getCartItemID(){
         return CartItem_id;

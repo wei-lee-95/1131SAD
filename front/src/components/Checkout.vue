@@ -8,9 +8,9 @@
       <div v-for="(item, index) in cartItems" :key="index" class="order-item">
         <div class="item-card">
           <div class="item-info-container">
-            <h3 class="item-name">{{ item.name }}</h3>
-            <p class="item-price">數量：{{ item.quantity }}</p>
-            <p class="item-price">小計：NT$ {{ item.price * item.quantity }}</p>
+            <h3 class="item-name">{{ item.meal.name }}</h3>
+            <p class="item-price">數量：{{ item.itemQuantity }}</p>
+            <p class="item-price">小計：NT$ {{ item.itemSubprice * item.itemQuantity }}</p>
           </div>
         </div>
       </div>
@@ -26,37 +26,51 @@
 </template>
 
 <script>
+import { addOrder } from "@/utils/meal"; 
 export default {
   name: 'CheckoutPage',
   data () {
     return {
+      cartItems: JSON.parse(this.$route.query.cartItems || '[]'), // 從路由讀取資料
       comment: this.$route.query.comment || '',
       name: '',
       phone: '',
-      address: ''
-    }
+      /* address: '' */
+    };
   },
   computed: {
-    cartItems () {
+    /* cartItems () {
       return this.$store.state.cart
-    },
+    }, */
     totalAmount () {
-      return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0)
+      return this.cartItems.reduce((total, item) => total + item.itemSubprice * item.itemQuantity, 0)
     }
   },
   methods: {
-    submitOrder () {
+/*     submitOrder () {
       const order = {
         comment: this.comment,
         name: this.name,
         phone: this.phone,
-        address: this.address,
-        totalPrice: this.totalPrice
+        /* address: this.address, */
+ /*        totalPrice: this.totalPrice
       }
       console.log('訂單已成功送出！:', order)
       this.$store.commit('CLEAR_CART') // 清空購物車
       this.$router.push('/order-completed')
-    }
+    }, */ 
+    submitOrder() {  
+      const memberID = 1
+      addOrder(memberID)
+        .then(() => {
+          alert("訂單已成功送出！");
+          this.$router.push('/order-completed')
+        })
+        .catch((error) => {
+          console.error("失敗:", error);
+          alert("失敗，請稍後再試！");
+        });
+    },
   }
 }
 </script>
