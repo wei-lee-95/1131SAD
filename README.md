@@ -19,7 +19,7 @@
 
 ### 2. 將 SQL 文件導入 MySQL Workbench
 #### **2-1. 建立資料庫連接**
-1. 打開 **MySQL Workbench**。 ![MySQL Workbench](./images/下載1.png)
+1. 下載並打開 **MySQL Workbench**。 ![MySQL Workbench](./images/下載1.png)
 
 2. 點擊主界面中 **MySQL Connections** 旁的 `+` 號，創建新的資料庫連接。 ![MySQL Connections](./images/下載.png)
 3. 在彈出的 **Setup New Connection** 視窗中：
