@@ -1,7 +1,7 @@
 <template>
   <div id="menu">
     <header class="menu-header">
-      <h1 class="title">緊來呷早餐店</h1>
+      <h1 class="menu-title">緊來呷早餐店</h1>
       <div class="header-right">
         <div class="search-container"> 
           <input type="text" placeholder="請輸入搜尋餐點..." v-model="searchQuery" class="search-bar"/> 
@@ -139,7 +139,7 @@ body {
   margin-bottom: 20px;
   background-color: black;
 }
-.title {
+.menu-title {
   margin: 0;
   font-size: 3em;
   font-family: 'Noto Sans TC',san serif;

@@ -9,11 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dao.CartItem;
-import com.dao.CartItemRepository;
-import com.dao.Menu;
-import com.dao.OrderRepository;
-import com.dao.ShoppingCart;
-import com.service.MemberService;
 import com.service.OrderService;
 import com.service.ShoppingCartService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RestController
@@ -32,9 +26,6 @@ public class ShoppingCartController {
 
     @Autowired
     private ShoppingCartService shoppingCartService;
-
-    @Autowired
-    private CartItemRepository cartItemRepository;
 
     @Autowired
     private OrderService orderService;

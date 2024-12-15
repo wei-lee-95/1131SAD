@@ -4,11 +4,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import java.util.Optional;
+
 
 
 @Repository
@@ -35,6 +36,10 @@ public interface CartItemRepository extends JpaRepository<CartItem, Integer>{
     @Param("mealID") Integer mealID,
     @Param("customizationIDs") String customizationIDs);
 
-    
+    @Query("SELECT c FROM CartItem c WHERE c.member_id = :memberId AND c.meal_id = :mealID AND c.customization_ids = :customizationIDs")
+    List<CartItem> findTop1ByMemberIdAndMealIDAndCustomizationIDs(@Param("memberId") int memberId, 
+                                      @Param("mealID") int mealID, 
+                                      @Param("customizationIDs") String customizationIDs);
+
 
 }

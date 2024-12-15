@@ -1,7 +1,7 @@
 <template>
   <div id="ShoppingCart">
     <header class = "ShoppingCart-header">
-      <h1 class="title">購物車</h1>
+      <h1 class="ShoppingCart-title">購物車</h1>
     </header>
     <main class="cart">
       <div v-for="(item, index) in cartItems" :key="index" class="cart-item">
@@ -125,7 +125,7 @@ export default {
       this.$store.commit('REMOVE_FROM_CART', item)
     }, */
     continueShopping () {
-      this.$router.push('/')
+      this.$router.push('/menu')
     },
     goToCheckout () {
       this.$router.push({
@@ -153,7 +153,7 @@ body {
   margin-bottom: 80px;
   background-color: black;
 }
-.title {
+.ShoppingCart-title {
   margin: 0;
   font-size: 3em;
   font-family: 'Noto Sans TC',san serif;
@@ -184,7 +184,7 @@ body {
 .item-card {
   flex-grow: 0;
   width: 900px;
-  height: 120px;
+  height: 240px;
   border: 1px solid #ddd;
   border-radius: 5px;
   padding: 15px;
@@ -193,14 +193,14 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+ justify-content: space-between;
 }
 .item-image {
   justify-content: flex-start;
   width: 80px;
   height: 80px;
   border-radius: 10px;
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 .item-info {
   text-align: center;

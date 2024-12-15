@@ -7,24 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.dao.ShoppingCart;
-import com.dao.ShoppingCartRepository;
-
 import jakarta.transaction.Transactional;
 
 import com.dao.CustomizationOption;
 import com.dao.CustomizationOptionRepository;
 import com.dao.Meal;
 import com.dao.MealRepository;
-import com.dao.Menu;
 import com.dao.CartItem;
 import com.dao.CartItemRepository;
 
 @Service
 public class ShoppingCartService {
-
-    @Autowired
-    private ShoppingCartRepository shoppingCartRepository;
 
     @Autowired
     private CartItemRepository cartItemRepository;
@@ -38,10 +31,6 @@ public class ShoppingCartService {
     @Autowired
     private CustomizationOptionService customizationOptionService;
 
-
-    public ShoppingCartService(ShoppingCartRepository ShoppingCartRepository) {
-        this.shoppingCartRepository = ShoppingCartRepository;
-    }
 
     public List<CartItem> getCart(int memberID) {
         List<CartItem> cartItems = cartItemRepository.findByMemberID(memberID);
@@ -113,7 +102,18 @@ public class ShoppingCartService {
                                                         .map(String::valueOf)
                                                         .collect(Collectors.joining(","));
                                         
-        cartItemRepository.deleteByMealIDAndCustomizationIDs(mealID, customizationIDsString);
+        //cartItemRepository.deleteByMealIDAndCustomizationIDs(mealID, customizationIDsString); 
+
+        // 查詢符合條件的所有記錄
+        List<CartItem> cartItems = cartItemRepository.findTop1ByMemberIdAndMealIDAndCustomizationIDs(memberID, mealID, customizationIDsString);
+
+        // 如果有記錄存在，刪除第一筆
+        if (!cartItems.isEmpty()) {
+            cartItemRepository.delete(cartItems.get(0));
+        } else {
+        // 如果沒有符合條件的記錄，拋出異常或打印警告
+            throw new IllegalArgumentException("No matching cart item found for the given criteria.");
+        }
     } 
 
     public void updateMealQuantityInCart(int memberId, int mealID, int newQuantity, List<Integer> customizationIDs) {

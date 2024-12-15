@@ -1,7 +1,7 @@
 <template>
   <div id="Checkout">
     <header class="checkout-header">
-      <h1 class="title">訂單確認</h1>
+      <h1 class="checkout-title">訂單確認</h1>
     </header>
 
     <div class="order-summary">
@@ -95,8 +95,8 @@ body {
   margin-bottom: 80px;
   background-color: black;
 }
-/*
-.title {
+
+.checkout-title {
   margin: 0;
   font-size: 3em;
   font-family: 'Noto Sans TC',san serif;
@@ -105,10 +105,10 @@ body {
   align-items: center;
   text-shadow:
     -1px -1px 0 white, /* 上左 */
-    /* 1px -1px 0 white, */ /* 上右 */
-    /* -1px 1px 0 white, */ /* 下左 */
-    /* 1px 1px 0 white; */ /* 下右 */
-/* }  */
+    1px -1px 0 white,  /* 上右 */
+    -1px 1px 0 white,  /* 下左 */
+    1px 1px 0 white;  /* 下右 */
+ }  
 
 .order-summary {
   display: flex;
