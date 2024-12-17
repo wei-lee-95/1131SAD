@@ -79,7 +79,7 @@
 #### **2-2. 顯示網頁前端 **
 1. 於 Terminal 中輸入 npm run serve 看專案是否可以使用
     ![npm_run_serve_success](./images/npm_run_serve_success.png)
-2. 複製網址到瀏覽係打開，出現畫面就代表成功囉！
+2. 複製網址到瀏覽器打開，出現畫面就代表成功囉！
     ![SAD_login](./images/SAD_login.png)
    
 ---
