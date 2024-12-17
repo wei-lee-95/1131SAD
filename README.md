@@ -62,7 +62,7 @@
 ### 2. 將 front 文件導入 VSCode
 #### **2-1. 建立 Vue 專案**
 1. 至 **Node.js**官網下載並安裝Node.js
-    ![node.js](./images/node.js頁.png)
+    ![node.js](./images/node.js_page.png)
 2. 開啟 Terminal 安裝 Vue CLI
    ![install_vue](./images/install_vue.png)
 4. 繼續安裝 Vuex
@@ -84,8 +84,8 @@
    
 ---
 
-### 3. 資料庫初始化完成
-至此，資料庫已成功設置，並可以與後端應用程序配合使用。
+### 3. 前端設置完成
+至此，網頁前端已成功設置，並可以與後端應用程序配合使用。
 
 ---
 
