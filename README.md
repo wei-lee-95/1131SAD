@@ -50,5 +50,42 @@
   - 用戶名和密碼是否正確。
   - MySQL 是否允許本地連接（檢查防火牆設置）。
 
+---
 
+## 二、設置前端架構
+### 1. 下載 GitHub 中的前端文件
+1. 下載GitHub 儲存庫中，front 資料夾內所有文件。
+2. 保存到本地並記住文件路徑。
+
+---
+
+### 2. 將 front 文件導入 VSCode
+#### **2-1. 建立 Vue 專案**
+1. 至 **Node.js**官網下載並安裝Node.js
+    ![node.js](./images/node.js頁.png)
+2. 開啟 Terminal 安裝 Vue CLI
+   ![install_vue](./images/install_vue.png)
+4. 繼續安裝 Vuex
+   ![install_vuex](./images/install_vuex.png)
+6. 繼續安裝 axios
+   ![install_axios](./images/install_axios.png)
+8. 透過 Vue CLI 在桌面建立專案
+   ![cd_desktop](./images/cd_desktop.png)
+   ![create_vue_plan](./images/create_vue_plan.png)
+10. 選擇設定
+    ![create_vue_options](./images/create_vue_options.png)
+12. 用 VSCode 打開專案、匯入最初從 Github 中下載的文件
+    
+#### **2-2. 顯示網頁前端 **
+1. 於 Terminal 中輸入 npm run serve 看專案是否可以使用
+    ![npm_run_serve_success](./images/npm_run_serve_success.png)
+2. 複製網址到瀏覽係打開，出現畫面就代表成功囉！
+    ![SAD_login](./images/SAD_login.png)
+   
+---
+
+### 3. 資料庫初始化完成
+至此，資料庫已成功設置，並可以與後端應用程序配合使用。
+
+---
 
