@@ -14,8 +14,8 @@ public class OrderItemService {
         this.OrderItemRepository = OrderItemRepository;
     }
 
-    public OrderItem showOrderDetailByID(int OrderItemID){
-        return OrderItemRepository.findById(OrderItemID).orElse(null);
-    }
+    // public OrderItem showOrderDetailByID(int OrderItemID){
+    //     return OrderItemRepository.findById(OrderItemID).orElse(null);
+    // }
     
 }
