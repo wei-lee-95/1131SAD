@@ -13,7 +13,7 @@ public class MemberService {
     @Autowired
     private MemberRepository memberRepository;
     
-    public Member getMemberByID(int memberID){
-        return memberRepository.findById(memberID).orElse(null);
-    }
+    // public Member getMemberByID(int memberID){
+    //     return memberRepository.findById(memberID).orElse(null);
+    // }
 }
