@@ -98,14 +98,19 @@
 ### 2. 將 back 文件導入 VSCode
 #### **2-1. 建立 Spring Boot 環境**
 1. 安裝 java(JDK)(若電腦內沒有的話 可在 terminal 內輸入 java -version 檢查)
-   從以下網址中下載:
+   從以下網址中下載
    https://www.oracle.com/tw/java/technologies/downloads/
 3. 安裝 Maven
+   到以下網址中下載 Maven 安裝檔並進行安裝
+   https://maven.apache.org/download.cgi
 
 #### **2-2. 安裝 VSCode Extensions**
 1. Extension Pack for Java
+   ![install_Extension Pack for Java](./images/install_Extension Pack for Java.png)
 2. Spring Boot Extension Pack
    ![install_Spring Boot Extension Pack](./images/install_Spring Boot Extension Pack.png)
    
 #### **2-3. 查看是否安裝成功**
+![run_spring_boot](./images/run_spring_boot.png)
 按下左上角箭頭後看到以下畫面，代表後端已成功運行
+![run_success](./images/run_success.png)
