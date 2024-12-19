@@ -106,9 +106,9 @@
 
 #### **2-2. 安裝 VSCode Extensions**
 1. Extension Pack for Java
-   ![install_Extension Pack for Java](./images/install_Extension Pack for Java.png)
+   ![install_Extension Pack for Java](./images/install_Extension_Pack_for_Java.png)
 2. Spring Boot Extension Pack
-   ![install_Spring Boot Extension Pack](./images/install_Spring Boot Extension Pack.png)
+   ![install_Spring Boot Extension Pack](./images/install_Spring_Boot_Extension_Pack.png)
    
 #### **2-3. 查看是否安裝成功**
 ![run_spring_boot](./images/run_spring_boot.png)
