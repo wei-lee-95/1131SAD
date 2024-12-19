@@ -100,6 +100,8 @@
 1. 安裝 java JDK
 2. 安裝 Maven
 
-#### **2-2. 安裝 VSCode extension**
-
+#### **2-2. 安裝 VSCode Extensions**
+1. Extension Pack for Java
+2. Spring Boot Extension Pack
+   ![install_Spring Boot Extension Pack](./images/install_Spring Boot Extension Pack.png)
 #### **2-3. 查看是否安裝成功**
