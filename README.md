@@ -1,7 +1,7 @@
 # 訂餐系統 - 安裝與執行說明書
 這是一個基於 **Vue.js** 和 **Spring Boot** 開發的訂餐系統。
-**請先確保資料庫有正確連接後再打開後端，最後再 npm run serve 啟動前端**
-**安裝完成後輸入 https://localhost:8080/ 即可看到網頁成果**
+**請先確保資料庫有正確連接後再打開後端，最後再 npm run serve 啟動前端**  
+**安裝完成後輸入 https://localhost:8080/ 即可看到網頁成果**  
 **登入頁面中的帳號密碼可隨意輸入**
 
 ---
@@ -64,23 +64,23 @@
 
 ### 2. 將 back 文件導入 VSCode
 #### **2-1. 建立 Spring Boot 環境**
-1. 安裝 java(JDK)(若電腦內沒有的話 可在 terminal 內輸入 java -version 檢查)
-   從以下網址中下載
-   https://www.oracle.com/tw/java/technologies/downloads/
-2. 安裝 Maven
-   到以下網址中下載 Maven 安裝檔並進行安裝
-   https://maven.apache.org/download.cgi
+1. 安裝 java(JDK)(若電腦內沒有的話 可在 terminal 內輸入 java -version 檢查)  
+   從以下網址中下載  
+   https://www.oracle.com/tw/java/technologies/downloads/  
+2. 安裝 Maven  
+   到以下網址中下載 Maven 安裝檔並進行安裝  
+   https://maven.apache.org/download.cgi  
 
 #### **2-2. 安裝 VSCode Extensions**
-1. Extension Pack for Java
+1. Extension Pack for Java  
    ![install_Extension Pack for Java](./images/install_Extension_Pack_for_Java.png)
-2. Spring Boot Extension Pack
+2. Spring Boot Extension Pack  
    ![install_Spring Boot Extension Pack](./images/install_Spring_Boot_Extension_Pack.png)
 3. 用 VSCode 打開專案、匯入最初從 Github 中下載的文件
    
 #### **2-3. 查看是否安裝成功**
-![run_spring_boot](./images/run_spring_boot.png)
-按下左上角有灰底的箭頭後看到以下畫面，代表後端已成功運行
+![run_spring_boot](./images/run_spring_boot.png)  
+按下左上角有灰底的箭頭後看到以下畫面，代表後端已成功運行  
 ![run_success](./images/run_success.png)
 
 ---
