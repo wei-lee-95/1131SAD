@@ -1,5 +1,8 @@
 # 訂餐系統 - 安裝與執行說明書
 這是一個基於 **Vue.js** 和 **Spring Boot** 開發的訂餐系統。
+**請先確保資料庫有正確連接後再打開後端，最後再 npm run serve 啟動前端**
+**安裝完成後輸入 https://localhost:8080/ 即可看到網頁成果**
+**登入頁面中的帳號密碼可隨意輸入**
 
 ---
 
@@ -52,7 +55,37 @@
 
 ---
 
-## 二、設置前端架構
+## 二、設置後端架構
+### 1. 下載 GitHub 中的後端文件
+1. 下載GitHub 儲存庫中，back 資料夾內所有文件。
+2. 保存到本地並記住文件路徑。
+
+---
+
+### 2. 將 back 文件導入 VSCode
+#### **2-1. 建立 Spring Boot 環境**
+1. 安裝 java(JDK)(若電腦內沒有的話 可在 terminal 內輸入 java -version 檢查)
+   從以下網址中下載
+   https://www.oracle.com/tw/java/technologies/downloads/
+2. 安裝 Maven
+   到以下網址中下載 Maven 安裝檔並進行安裝
+   https://maven.apache.org/download.cgi
+
+#### **2-2. 安裝 VSCode Extensions**
+1. Extension Pack for Java
+   ![install_Extension Pack for Java](./images/install_Extension_Pack_for_Java.png)
+2. Spring Boot Extension Pack
+   ![install_Spring Boot Extension Pack](./images/install_Spring_Boot_Extension_Pack.png)
+3. 用 VSCode 打開專案、匯入最初從 Github 中下載的文件
+   
+#### **2-3. 查看是否安裝成功**
+![run_spring_boot](./images/run_spring_boot.png)
+按下左上角有灰底的箭頭後看到以下畫面，代表後端已成功運行
+![run_success](./images/run_success.png)
+
+---
+
+## 三、設置前端架構
 ### 1. 下載 GitHub 中的前端文件
 1. 下載GitHub 儲存庫中，front 資料夾內所有文件。
 2. 保存到本地並記住文件路徑。
@@ -65,16 +98,16 @@
     ![node.js](./images/node.js_page.png)
 2. 開啟 Terminal 安裝 Vue CLI
    ![install_vue](./images/install_vue.png)
-4. 繼續安裝 Vuex
+3. 繼續安裝 Vuex
    ![install_vuex](./images/install_vuex.png)
-6. 繼續安裝 axios
+4. 繼續安裝 axios
    ![install_axios](./images/install_axios.png)
-8. 透過 Vue CLI 在桌面建立專案
+5. 透過 Vue CLI 在桌面建立專案
    ![cd_desktop](./images/cd_desktop.png)
    ![create_vue_plan](./images/create_vue_plan.png)
-10. 選擇設定
+6. 選擇設定
     ![create_vue_options](./images/create_vue_options.png)
-12. 用 VSCode 打開專案、匯入最初從 Github 中下載的文件
+7. 用 VSCode 打開專案、匯入最初從 Github 中下載的文件
     
 #### **2-2. 顯示網頁前端 **
 1. 於 Terminal 中輸入 npm run serve 看專案是否可以使用
@@ -88,29 +121,3 @@
 至此，網頁前端已成功設置，並可以與後端應用程序配合使用。
 
 ---
-
-## 三、設置後端架構
-### 1. 下載 GitHub 中的後端文件
-1. 下載GitHub 儲存庫中，back 資料夾內所有文件。
-2. 保存到本地並記住文件路徑。
-
----
-### 2. 將 back 文件導入 VSCode
-#### **2-1. 建立 Spring Boot 環境**
-1. 安裝 java(JDK)(若電腦內沒有的話 可在 terminal 內輸入 java -version 檢查)
-   從以下網址中下載
-   https://www.oracle.com/tw/java/technologies/downloads/
-3. 安裝 Maven
-   到以下網址中下載 Maven 安裝檔並進行安裝
-   https://maven.apache.org/download.cgi
-
-#### **2-2. 安裝 VSCode Extensions**
-1. Extension Pack for Java
-   ![install_Extension Pack for Java](./images/install_Extension_Pack_for_Java.png)
-2. Spring Boot Extension Pack
-   ![install_Spring Boot Extension Pack](./images/install_Spring_Boot_Extension_Pack.png)
-   
-#### **2-3. 查看是否安裝成功**
-![run_spring_boot](./images/run_spring_boot.png)
-按下左上角箭頭後看到以下畫面，代表後端已成功運行
-![run_success](./images/run_success.png)
