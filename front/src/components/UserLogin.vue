@@ -76,14 +76,11 @@ export default {
   text-align: center;
 }
 .login-icon img {
-  width: 150px;
-  height: 150px;
-}
-.login-icon { 
-  margin-bottom: 10px; 
+  width: 250px;
+  height: 250px;
 }
 h2 { 
-  margin-top: 0;
+  margin-top: -20px;
 }
 .input-group {
   display: flex; 
