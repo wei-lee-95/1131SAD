@@ -1,0 +1,1 @@
+SELECT * FROM saddb.cartitem WHERE member_id = 1;

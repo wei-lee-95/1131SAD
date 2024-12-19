@@ -11,7 +11,7 @@ export function fetchMealDetailsWithCustomization(memberID, mealID) {
   return axios.get(`${BASE_URL}/member/${memberID}/meal/${mealID}`);
 }
 
-export function addToCart(memberID, mealID, quantity, customizationIDs) {
+export function addMealToCart(memberID, mealID, quantity, customizationIDs) {
   return axios.post(`${BASE_URL}/cart/addMeal`, {
     memberID,
     mealID,

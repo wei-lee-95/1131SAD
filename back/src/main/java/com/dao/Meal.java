@@ -14,7 +14,7 @@ public class Meal {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) 
-    @Column(name = "meal_id")  // 映射到資料庫中的 meal_id 欄位
+    @Column(name = "meal_id")  // 對資料庫中的 meal_id 
     private int mealID;
 
     @Column(name = "meal_name")

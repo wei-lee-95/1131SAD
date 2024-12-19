@@ -45,7 +45,7 @@
 <script>
 import ProductCard from './ProductCard.vue';
 import { fetchMealsByMemberID } from "@/utils/meal";
-import { addToCart } from "@/utils/meal"; 
+import { addMealToCart } from "@/utils/meal"; 
 
 export default {
   name: 'BreakfastMenu',
@@ -108,7 +108,7 @@ export default {
       const memberID = 1
       const mealID = product.id;
       const customizationIDs = product.customization.options
-      addToCart(memberID, mealID, product.quantity, customizationIDs)
+      addMealToCart(memberID, mealID, product.quantity, customizationIDs)
         .then(() => {
           alert(`${product.name} 已加入購物車!`);
         })

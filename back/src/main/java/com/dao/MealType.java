@@ -7,11 +7,10 @@ import jakarta.persistence.IdClass;
 import jakarta.persistence.Table;
 
 
-// MealType 实体类
 @Entity
 @Table(name = "mealtype_customization")
 
-@IdClass(MealTypeId.class)  // 指定复合主键类
+@IdClass(MealTypeId.class)  //複合主鍵
 public class MealType {
 
     @Id

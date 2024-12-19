@@ -12,9 +12,7 @@ import org.springframework.data.repository.query.Param;
 @Repository
 public interface MealTypeRepository extends JpaRepository<MealType, MealTypeId> {
 
-    // 使用 JPQL 查詢
     @Query("SELECT mt FROM MealType mt WHERE mt.type = :type")
     List<MealType> getMealTypesByType(@Param("type") String type);
-
 
 }
